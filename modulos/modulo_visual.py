@@ -79,6 +79,9 @@ class App():
         self.nombre_archivo_2.delete(0, END)
         self.nombre_archivo_1.config(state='readonly')
         self.nombre_archivo_2.config(state='readonly')
+        self.pagina_pdf.delete(0, END)
+        self.alto_img.delete(0, END)
+        self.ancho_img.delete(0, END)
     
     def volver(self):
             self.lbl_archivo_1.place_forget()
@@ -218,7 +221,10 @@ class App():
             pagina = self.pagina_pdf.get()
             
             if pdf and ventana and pagina:
-                self.x, self.y = Operaciones.abrir_pagina_pdf(pdf, ventana, pagina)
+                try:
+                    self.x, self.y = Operaciones.abrir_pagina_pdf(pdf, ventana, pagina)
+                except:
+                    pass
             else:
                 messagebox.showwarning('Advertencia', 'Debes elegir el archivo y la página')
                 

@@ -105,20 +105,31 @@ class Operaciones():
         top = Toplevel(ventana)
         top.title('Selecciona coordenadas del PDF')
 
-        canvas = Canvas(top, width=pix.width, height=pix.height)
-        canvas.pack()
+        frame = Frame(top)
+        frame.pack(fill=BOTH, expand=True)
 
-        tk_img = ImageTk.PhotoImage(img)
+        canvas = Canvas(frame, width=pix.width, height=pix.height, bg="gray")
+        vbar = Scrollbar(frame, orient=VERTICAL, command=canvas.yview)
+
+        canvas.configure(yscrollcommand=vbar.set)
+        vbar.pack(side=RIGHT, fill=Y)
+        canvas.pack(side=LEFT, fill=BOTH, expand=True)
+
+        tk_img = ImageTk.PhotoImage(img, master=canvas)
         canvas.create_image(0, 0, anchor='nw', image=tk_img)
 
+        canvas.config(scrollregion=(0, 0, pix.width, pix.height))
+
         canvas._image_ref = tk_img 
-        
+
         def click(event):
             global x, y
-            x, y = event.x, event.y
+            x = canvas.canvasx(event.x)
+            y = canvas.canvasy(event.y)
+
             r = 3
-            ovalo= canvas.create_oval(x-r, y-r, x+r, y+r, outline="red", width=2)
-            respuesta = messagebox.askyesno('Coordenadas Elegidas', 'Quieres elegir estas coordenadas para firmar?')
+            ovalo = canvas.create_oval(x-r, y-r, x+r, y+r, outline="red", width=2)
+            respuesta = messagebox.askyesno('Coordenadas Elegidas', '¿Quieres elegir estas coordenadas para firmar?')
             if respuesta:
                 top.destroy()
             else:
@@ -126,7 +137,7 @@ class Operaciones():
                 del x, y
         
         canvas.bind("<Button-1>", click)
-        
+
         top.wait_window()
         
         try:
