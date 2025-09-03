@@ -1,0 +1,42 @@
+# ==== Python ====
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.venv*/
+env*/
+
+# Distribución y compilación
+build/
+dist/
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+
+# Archivos binarios
+*.exe
+*.dll
+*.so
+*.dylib
+*.pkg
+
+# Archivos temporales / logs
+*.log
+*.tmp
+*.bak
+
+# IDEs y editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos de sistema (Windows, macOS, Linux)
+.DS_Store
+Thumbs.db

@@ -43,6 +43,15 @@ class App():
         self.abrir_archivo_1 = Button(self.ventana, text = "Buscar", bg=self.color_principal, fg=self.color_texto, font=('Arial', 12))
         self.abrir_archivo_2 = Button(self.ventana, text = "Buscar", bg=self.color_principal, fg=self.color_texto, font=('Arial', 12))
         
+        self.lbl_ancho_img = Label(self.ventana, text="Ancho Imagen", bg=self.color_principal, fg=self.color_texto, font=('Arial', 15))
+        self.lbl_alto_img = Label(self.ventana, text="Alto Imagen", bg=self.color_principal, fg=self.color_texto, font=('Arial', 15))
+        self.lbl_pagina_pdf = Label(self.ventana, text="Página en la que se firma", bg=self.color_principal, fg=self.color_texto, font=('Arial', 15))
+        self.ancho_img = Entry(self.ventana, width=10)
+        self.alto_img = Entry(self.ventana, width=10)
+        self.pagina_pdf = Entry(self.ventana, width=10)
+        
+        self.btn_seleccionar_coordenadas = Button(self.ventana, text = "Seleccionar posición", bg=self.color_principal, fg=self.color_texto, font=('Arial', 12))
+        
         self.boton_ejecutar = Button(self.ventana, width=10, text='Listo', bg=self.color_principal, fg=self.color_texto, font=('Arial', 10))
         self.x = Entry(ventana)
         self.y = Entry(ventana)
@@ -222,23 +231,17 @@ class App():
         
         self.abrir_archivo_2.config(command=url_2)
         self.abrir_archivo_2.place(x=self.posicion_x+350, y=100)
-
-        self.lbl_ancho_img = Label(self.ventana, text="Ancho Imagen", bg=self.color_principal, fg=self.color_texto, font=('Arial', 15))
+   
         self.lbl_ancho_img.place(x=self.posicion_x, y=170)
-        self.ancho_img = Entry(self.ventana, width=10)
         self.ancho_img.place(x=self.posicion_x+150, y=175)
         
-        self.lbl_alto_img = Label(self.ventana, text="Alto Imagen", bg=self.color_principal, fg=self.color_texto, font=('Arial', 15))
         self.lbl_alto_img.place(x=self.posicion_x+240, y=170)
-        self.alto_img = Entry(self.ventana, width=10)
         self.alto_img.place(x=self.posicion_x+370, y=175)
-        
-        self.lbl_pagina_pdf = Label(self.ventana, text="Página en la que se firma", bg=self.color_principal, fg=self.color_texto, font=('Arial', 15))
-        self.lbl_pagina_pdf.place(x=self.posicion_x+30, y=210)
-        self.pagina_pdf = Entry(self.ventana, width=10)
+
+        self.lbl_pagina_pdf.place(x=self.posicion_x+30, y=210) 
         self.pagina_pdf.place(x=self.posicion_x+300, y=215)
         
-        self.btn_seleccionar_coordenadas = Button(self.ventana, text = "Seleccionar posición", bg=self.color_principal, fg=self.color_texto, font=('Arial', 12), command=seleccionar_coordenada)
+        self.btn_seleccionar_coordenadas.config(command=seleccionar_coordenada)
         self.btn_seleccionar_coordenadas.place(x=self.posicion_x + 140, y=250)
       
         self.boton_ejecutar.config(command=firmar)
